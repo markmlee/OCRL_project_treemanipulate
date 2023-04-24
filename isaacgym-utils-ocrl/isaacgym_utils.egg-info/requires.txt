@@ -1,0 +1,17 @@
+autolab_core>=1.1.0
+visualization
+numba
+triangle
+numpy-quaternion
+
+[all]
+stable_baselines3
+ray
+gym
+
+[ray]
+ray
+
+[rl]
+stable_baselines3
+gym

@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: isaacgym-utils
+Version: 0.1.0
+Author: Jacky Liang
+Author-email: jackyliang@cmu.edu
+Provides-Extra: ray
+Provides-Extra: rl
+Provides-Extra: all
+License-File: LICENSE
