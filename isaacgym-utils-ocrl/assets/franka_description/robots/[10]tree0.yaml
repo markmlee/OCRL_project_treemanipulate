@@ -1,0 +1,142 @@
+scene:
+  cam:
+    cam_pos:
+    - 5
+    - 0
+    - 5
+    look_at:
+    - 0
+    - 0
+    - 0
+  es: 1
+  gui: true
+  gym:
+    device:
+      compute: 0
+      graphics: 0
+    dt: 0.01
+    physx:
+      contact_offset: 0.001
+      friction_correlation_distance: 0.0005
+      friction_offset_threshold: 0.001
+      num_position_iterations: 8
+      num_velocity_iterations: 1
+      rest_offset: 0.0
+      solver_type: 1
+      use_gpu: true
+    plane:
+      dynamic_friction: 0.4
+      restitution: 0
+      static_friction: 0
+    substeps: 2
+    type: physx
+    up_axis: z
+    use_gpu_pipeline: true
+  n_envs: 1
+tree:
+  asset_options:
+    armature: 0.01
+    disable_gravity: true
+    fix_base_link: true
+    flip_visual_attachments: true
+    max_angular_velocity: 40.0
+    max_linear_velocity: 100.0
+  attractor_props:
+    damping: 0
+    stiffness: 0
+  dof_props:
+    damping:
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    - 25
+    effort:
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    - 87
+    stiffness:
+    - 330.05862124921504
+    - 165.02931062460752
+    - 165.02931062460752
+    - 83.51466678781378
+    - 83.51466678781378
+    - 83.51466678781378
+    - 19.301945263655707
+    - 19.301945263655707
+    - 19.301945263655707
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 48.637854283196965
+    - 48.637854283196965
+    - 48.637854283196965
+    - 19.301945263655707
+    - 19.301945263655707
+    - 19.301945263655707
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+    - 19.301945263655693
+  shape_props:
+    thickness: 0.001

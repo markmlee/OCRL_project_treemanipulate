@@ -45,7 +45,7 @@ class GymTree(GymURDFAsset):
     _VEL_LIMITS = None
 
     # _URDF_PATH = '/home/marklee/github/build_sdf/generated_urdf/tree_pruned.urdf'
-    _URDF_PATH = 'franka_description/robots/[10]tree0_ocrl.urdf'
+    _URDF_PATH = 'franka_description/robots/[10]tree0.urdf'
     # _URDF_PATH = 'franka_description/robots/tree_full.urdf'
 
     @staticmethod

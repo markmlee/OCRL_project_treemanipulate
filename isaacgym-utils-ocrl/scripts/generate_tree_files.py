@@ -31,14 +31,14 @@ output: box list for collision
 ''' 
 
 # output file path
-PATH = "/home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/scripts/"
-SAVE_PATH = "/home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/scripts/"
+PATH = "/home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/assets/franka_description/robots/"
+SAVE_PATH = "/home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/assets/franka_description/robots/"
 
 
 ## Parameters for the SCA tree generation algo. Lists specify possible parameters, of which one is chosen at random for every tree
 SCALING = 1
 PIPE_MODEL_EXPONENT = 3 #suggested values: 2 or 3
-STEP_WIDTH = 0.25 #determines the lenght of individual tree segments
+STEP_WIDTH = 0.5 #determines the lenght of individual tree segments
 HEIGHT_STRECH_VALS = [0.05, 0.10] #[0.5, 0.33, 1] #factors to strech the crown shape of the tree to be non circular
 WIDTH_STRECH_VALS = [1.0, 9.0] #[0.5, 0.33, 1] #factors to strech the crown shape of the tree to be non circular
 ATT_PTS_NUM = [80, 160, 320, 640] #800, 1600, 3200, 6400 number of attraction points
@@ -83,7 +83,7 @@ def main():
         ig = ig_loader.IG_loader(PATH, SAVE_PATH, name_dict = name_dict, edge_def = edge_def, tree_num = tree)
         ig.run_policy_do_nothing()
 
-    print(f" ================ ending sample script ================  ")
+    # print(f" ================ ending sample script ================  ")
 
 
 if __name__ == '__main__':
