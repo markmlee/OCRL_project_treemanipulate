@@ -33,7 +33,10 @@ python franka_tree.py
 ```
 
 # Running script to generate tree
+This script creates the tree and visualizes in IsaacGym sim 
 ```
 cd /home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/scripts
 python generate_tree_files.py 
 ```
+
+![loaded viz](doc/IG_tree.png)
