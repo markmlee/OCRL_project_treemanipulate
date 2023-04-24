@@ -16,3 +16,18 @@ cd /home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym/docs
 ```
 pip install -e isaacgym-utils
 ```
+
+# verifying correct installation
+There are two examples you can run to verify correct installation. One for isaacgym, and one for isaacgym-utils.
+
+1. run the franka_attractor.py in isaacgym
+```
+cd /home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym/python/examples
+python  franka_attractor.py
+```
+
+2. run the franka_tree.py in isaacgym-utils
+```
+cd /home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/examples
+python franka_tree.py 
+```
