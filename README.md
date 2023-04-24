@@ -2,7 +2,7 @@
 
 # installation setup
 1. Install IsaacGym from [Nvidia](https://developer.nvidia.com/isaac-gym)
-2. Follow the instructions in install.html doc 
+2. Follow the instructions in install.html doc (following these instructions should setup isaacgym directory like shown in this repo)
 ```
 cd /home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym/docs
 ```
