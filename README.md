@@ -31,3 +31,9 @@ python  franka_attractor.py
 cd /home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/examples
 python franka_tree.py 
 ```
+
+# Running script to generate tree
+```
+cd /home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/scripts
+python generate_tree_files.py 
+```
