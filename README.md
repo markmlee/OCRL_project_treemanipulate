@@ -12,3 +12,7 @@ cd /home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym/docs
 ./create_conda_env_rlgpu.sh
 ```
 
+3. Get the isaac-gym-utils (either by git clone or copy & pasting existing)
+```
+pip install -e isaacgym-utils
+```
