@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 import numpy as np
 
 from isaacgym import gymapi
-from .math_utils import min_jerk, slerp_quat, vec3_to_np, np_to_vec3, \
+from .math_utils import min_jerk, slerp_quat, vec3_to_np, np_to_vec3, np_to_quat, \
                     project_to_line, compute_task_space_impedance_control
 
 
@@ -98,6 +98,56 @@ class MoveBlockPolicy(Policy):
         self._ee_waypoint_policies[env_idx](scene, env_idx, t_step, t_sim)
 
    
+class GraspTreePolicy(Policy):
+
+    def __init__(self, franka, franka_name, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._franka = franka
+        self._franka_name = franka_name
+
+        self._time_horizon = 1000
+
+        self.reset()
+
+    def reset(self):
+        self._pre_grasp_transforms = []
+        self._grasp_transforms = []
+        self._init_ee_transforms = []
+        self._ee_waypoint_policies = []
+
+    def set_grasp_goal(self, grasp_goal):
+        self._grasp_goal = grasp_goal
+
+    def __call__(self, scene, env_idx, t_step, t_sim):
+        ee_transform = self._franka.get_ee_transform(env_idx, self._franka_name)
+
+        if t_step == 0:
+            self._init_ee_transforms.append(ee_transform)
+            self._ee_waypoint_policies.append(
+                EEImpedanceWaypointPolicy(self._franka, self._franka_name, ee_transform, ee_transform, T=20)
+            )
+
+       
+
+        if t_step == 20:
+            #convert grasp goal to transform
+            grasp_pos = np_to_vec3(self._grasp_goal[0:3])
+            grasp_rot = np_to_quat(self._grasp_goal[3:7])
+
+
+            grasp_transform = gymapi.Transform(p=grasp_pos, r=grasp_rot)
+
+            self._grasp_transforms.append(grasp_transform)
+      
+
+            self._ee_waypoint_policies[env_idx] = \
+                EEImpedanceWaypointPolicy(
+                    self._franka, self._franka_name, ee_transform, self._grasp_transforms[env_idx], T=180
+                )
+
+   
+        self._ee_waypoint_policies[env_idx](scene, env_idx, t_step, t_sim)
+
 
 class GraspBlockPolicy(Policy):
 

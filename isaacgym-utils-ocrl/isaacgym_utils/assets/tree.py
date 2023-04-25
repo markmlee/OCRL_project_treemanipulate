@@ -23,14 +23,16 @@ class GymTree(GymURDFAsset):
     # link_names = ['link1', 'link2', 'link3', 'link4', 'link5', 'link6', 'link7', 'link7_leaf', 'link8', 'link8_leaf', 'link9', 'link9_leaf', 'link10', 'link10_leaf',
     #  'link11', 'link11_leaf', 'link12', 'link12_leaf' ]
 
-    joint_names = ['joint0_x_to_1', 'joint0_y_to_1', 'joint0_z_to_1', 'joint1_x_to_2', 'joint1_y_to_2', 'joint1_z_to_2', 'joint1_x_to_3', 
-     'joint1_y_to_3', 'joint1_z_to_3', 'joint1_x_to_8', 'joint1_y_to_8', 'joint1_z_to_8', 'joint2_x_to_4', 'joint2_y_to_4', 'joint2_z_to_4', 
-     'joint2_x_to_7', 'joint2_y_to_7', 'joint2_z_to_7', 'joint3_x_to_5', 'joint3_y_to_5', 'joint3_z_to_5', 'joint4_x_to_6', 'joint4_y_to_6', 
-     'joint4_z_to_6', 'joint5_x_to_9', 'joint5_y_to_9', 'joint5_z_to_9', 'joint6_x_to_10', 'joint6_y_to_10', 'joint6_z_to_10']
+    joint_names = ['joint0_x_to_1', 'joint0_y_to_1', 'joint0_z_to_1', 'joint1_x_to_2', 'joint1_y_to_2', 'joint1_z_to_2', 'joint1_x_to_4', 
+    'joint1_y_to_4', 'joint1_z_to_4', 'joint1_x_to_8', 'joint1_y_to_8', 'joint1_z_to_8', 'joint2_x_to_3', 'joint2_y_to_3', 'joint2_z_to_3', 
+    'joint2_x_to_6', 'joint2_y_to_6', 'joint2_z_to_6', 'joint3_x_to_5', 'joint3_y_to_5', 'joint3_z_to_5', 'joint3_x_to_9', 'joint3_y_to_9', 
+    'joint3_z_to_9', 'joint4_x_to_7', 'joint4_y_to_7', 'joint4_z_to_7', 'joint6_x_to_10', 'joint6_y_to_10', 'joint6_z_to_10']
 
-    link_names = ['base_link', 'link_0_to_1', 'link_1_to_2', 'link_1_to_3', 
-     'link_1_to_8', 'link_2_to_4', 'link_2_to_7', 'link_3_to_5', 'link_4_to_6', 'link_5_to_9', 'link_6_to_10', 'link7_tip', 'link8_tip', 
-     'link9_tip', 'link10_tip']
+    link_names = ['base_link', 'link_0_to_1', 'link_1_to_2', 'link_1_to_4', 
+    'link_1_to_8', 'link_2_to_3', 'link_2_to_6', 'link_3_to_5', 'link_3_to_9', 'link_4_to_7', 
+    'link5_tip', 'link_6_to_10', 'link7_tip', 'link8_tip', 'link9_tip', 'link10_tip']
+
+
 
     num_joints = len(joint_names)
     num_links = len(link_names)

@@ -10,7 +10,7 @@ from isaacgym_utils.assets import GymFranka, GymBoxAsset
 from isaacgym_utils.assets import GymTree
 from isaacgym_utils.camera import GymCamera
 from isaacgym_utils.math_utils import RigidTransform_to_transform, np_to_vec3, vec3_to_np, quat_to_np
-from isaacgym_utils.policy import GraspBlockPolicy, MoveBlockPolicy
+from isaacgym_utils.policy import GraspBlockPolicy, MoveBlockPolicy, GraspTreePolicy
 from isaacgym_utils.draw import draw_transforms, draw_contacts, draw_camera, draw_spheres
 import pdb
 import sys
@@ -52,6 +52,9 @@ if __name__ == "__main__":
     force_applied = np.zeros((3,tree.num_links)) #fx,fy,fz     
 
 
+    
+
+
     def setup(scene, _):
 
         scene.add_asset(franka_name, franka, franka_transform, collision_filter=1) # avoid self-collisions
@@ -84,9 +87,45 @@ if __name__ == "__main__":
         # print(f" vertex {vertex_pos} ")    
         return vertex_pos
 
+    def get_grabbable_tree_links():
+        # get branch link indices that can be used for interacting with
+        grabbable_link_indices = []
+        grabbable_link_poses = []
+
+        idx = 0
+        for link_name in tree.link_names:
+            if not "base" in link_name and not "tip" in link_name: # Exclude base from being a push option
+                grabbable_link_indices.append(idx)
+            idx += 1
+        # print(f"size of grabbable_link_indices {len(grabbable_link_indices)} ")
+        # print(f"grabbable_link_indices {grabbable_link_indices} ")
+
+        grabbable_link_poses = get_link_poses()[:,grabbable_link_indices]
+        # print(f"grabbable_link_poses {grabbable_link_poses} ")
+        # print(f" size of grabbable_link_poses {grabbable_link_poses.shape} ")
+
+        return grabbable_link_indices, grabbable_link_poses
+
+
+
+    policy = GraspTreePolicy(franka, franka_name)
+
+    while True:
+        # get grabble tree link poses
+        grabbable_link_indices, grabbable_link_poses = get_grabbable_tree_links()
+
+
+        #randomly choose index to grab
+        idx = np.random.randint(0, len(grabbable_link_indices))
+        idx = -1 #hardcode to grab the last link
+
+        goal_grab_pose = grabbable_link_poses[:,idx]
+        print(f"grabbing link idx {idx}, goal_grab_pose {goal_grab_pose} ")
+        policy.set_grasp_goal(goal_grab_pose)
+
+        print(f"resetting policy")
+        policy.reset()
+        print(f"running policy")
+        scene.run(time_horizon=policy.time_horizon, policy=policy)
 
     
-    def policy(scene, env_idx, t_step, t_sim):
-        pass
-
-    scene.run(policy=policy)
