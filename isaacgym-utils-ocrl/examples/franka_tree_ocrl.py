@@ -110,6 +110,10 @@ def draw_box_rotation(XYZ_center, RPY_list, LWH_list):
     for center, RPY, LWH in zip(XYZ_center, RPY_list, LWH_list):
         x, y, z = center
         l, w, h = LWH
+
+        # convert RPY radians to degrees
+        RPY_deg = [np.rad2deg(RPY[0]), np.rad2deg(RPY[1]), np.rad2deg(RPY[2])]
+        # print(f"RPY: {RPY_deg}")
        
         # Define the vertices of the box
         vertices = [[x - l/2, y - w/2, z - h/2],
@@ -122,7 +126,7 @@ def draw_box_rotation(XYZ_center, RPY_list, LWH_list):
                     [x + l/2, y - w/2, z + h/2]]
        
         # Convert the RPY angles to a rotation matrix
-        R = Rotation.from_euler( seq = 'zyx', angles= [RPY[0], RPY[1], RPY[2]], degrees=False )
+        R = Rotation.from_euler( seq = 'xyz', angles= [RPY[0], RPY[1], RPY[2]], degrees=False )
 
         # convert spatial transform object to np matrix
         R = R.as_matrix()
@@ -145,8 +149,8 @@ def draw_box_rotation(XYZ_center, RPY_list, LWH_list):
                  [4,5,6,7]]
        
 
-        print(f"vertices: {vertices_rotated}")
-        print(f"faces: {faces}")
+        # print(f"vertices: {vertices_rotated}")
+        # print(f"faces: {faces}")
         poly3d_list = []
         for face in faces:
             
@@ -154,12 +158,11 @@ def draw_box_rotation(XYZ_center, RPY_list, LWH_list):
             for edge in face:
                 verticies_list.append(vertices_rotated[edge])
 
-            print(f"for face {face} ,verticies_list: {verticies_list}")
+            # print(f"for face {face} ,verticies_list: {verticies_list}")
             poly3d_list.append(verticies_list)
 
 
         obj = Poly3DCollection(poly3d_list,facecolors='blue', linewidths=1, edgecolors='black', alpha=.25)
-        print(f"obj: {obj} ")
 
 
         # Plot the box
