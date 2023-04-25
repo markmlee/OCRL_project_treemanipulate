@@ -74,6 +74,8 @@ def main():
     print(f" name_dict: {name_dict}")
     print(f" edge_def: {edge_def}")
 
+    sys.exit()
+
  
 
     # load the tree in IG for visualization debugging

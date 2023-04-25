@@ -320,11 +320,29 @@ class TreeGenerator(object):
         urdf.appendChild(robot)
         self.generate_color_definitions(urdf, robot)
         self.generate_ground(urdf, robot)
+
+        total_box_link_list = []
+
         for node_index, _ in enumerate(self.tree_points):
             children = self.find_children(node_index)
             self.generate_spherical_joint(urdf, robot, node_index, children)
             for child in children:
                 self.generate_link(urdf, robot, node_index, child)
+                box_link = self.generate_box_collision(urdf, robot, node_index, child)
+
+                #append box link to total box link list
+                total_box_link_list.append(box_link)
+
+
+        #convert link as np array
+        total_box_link_np = np.array(total_box_link_list)
+        #reshape np array with dim (n x 9)
+        total_box_link_np = total_box_link_np.reshape(-1,9)
+        #save np array
+        save_path = "/home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/assets/franka_description/robots/"
+        np.save(save_path + "tree%s_box_link.npy"%self.tree_id, total_box_link_np)
+        print(f" saving box link to {save_path}tree{self.tree_id}_box_link.npy")
+
 
         self.clean_edge_list()
         tree_string = urdf.toprettyxml(indent='\t')
@@ -618,6 +636,32 @@ class TreeGenerator(object):
             self.add_dynamics(urdf, jointz)
             self.add_limits(urdf, jointz)
             robot.appendChild(jointz)
+
+    def generate_box_collision(self, urdf, robot, parent, child):
+        """
+        box collision generation: generates a box collision between parent and child
+        return X,Y,Z,  Rx, Ry, Rz, L, W, H, 
+        """
+        xyz_offset = (self.tree_points[child] - self.tree_points[parent])
+        link_length = np.linalg.norm(xyz_offset)
+        xyz_offset = xyz_offset/2
+        rpy_rotations = self.calculate_rpy(parent, child)
+        cylinder_radius = self.tip_radius
+        idx = 0
+        while idx < len(self.edges[parent]):
+            cylinder_radius = self.branch_thickness_dict[child]
+            idx += 1
+
+        #change cylinder radius to box L x W
+        box_length = cylinder_radius * 2
+        box_width = cylinder_radius * 2
+        box_height = link_length
+
+        #return collision box dimensions as list
+        print(f" xyz_offset: {xyz_offset} rpy_rotations: {rpy_rotations} box_length: {box_length} box_width: {box_width} box_height: {box_height}")
+        return [xyz_offset[0], xyz_offset[1], xyz_offset[2], rpy_rotations[0], rpy_rotations[1], rpy_rotations[2], box_length, box_width, box_height]
+
+        
 
     def generate_link(self, urdf, robot, parent, child):
         """
