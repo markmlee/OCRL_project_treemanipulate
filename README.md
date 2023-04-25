@@ -40,3 +40,12 @@ python generate_tree_files.py
 ```
 
 ![loaded viz](doc/IG_tree.png)
+
+
+# Running script to load robot with tree 
+This is the template example code for tree-robot interaction in IsaacGym sim 
+```
+cd /home/mark/course/16745_orcl/OCRL_project_treemanipulate/isaacgym-utils-ocrl/examples
+python franka_tree_ocrl.py 
+```
+![loaded viz](doc/franka_tree.png)
